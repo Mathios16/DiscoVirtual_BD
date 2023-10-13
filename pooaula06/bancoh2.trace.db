@@ -1,0 +1,115 @@
+2023-10-05 15:53:23.729459-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE pastas (pst_id integer primary key [*]not nullpst_nome varchar2(25)pst_pst_id integer"; expected "HASH, CONSTRAINT, COMMENT, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE pastas (pst_id integer primary key not nullpst_nome varchar2(25)pst_pst_id integer [42001-224]
+2023-10-05 15:53:54.359970-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE pastas (pst_id integer primary key not null,pst_nome varchar2(25),pst_pst_id integer[*]"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE pastas (pst_id integer primary key not null,pst_nome varchar2(25),pst_pst_id integer [42001-224]
+2023-10-05 15:54:15.531110-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE pastas (pst_id integer primary key not null,pst_nome varchar2(25),pst_pst_id integer[*];"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE pastas (pst_id integer primary key not null,pst_nome varchar2(25),pst_pst_id integer; [42001-224]
+2023-10-05 15:55:10.103889-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE pastas (pst_id integer primary key not null,pst_nome varchar2(25),pst_pst_id integer not null[*];"; expected "DEFAULT, GENERATED, ON UPDATE, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE pastas (pst_id integer primary key not null,pst_nome varchar2(25),pst_pst_id integer not null; [42001-224]
+2023-10-05 15:55:29.723051-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE pastas ADD CONSTRAINT fk_pst_pst [*]FOREING KEY ( pst_pst_id ) REFERENCES pastas ( pst_id );"; expected "., COMMENT, PRIMARY, UNIQUE, FOREIGN, CHECK"; SQL statement:
+ALTER TABLE pastas ADD CONSTRAINT fk_pst_pst FOREING KEY ( pst_pst_id ) REFERENCES pastas ( pst_id ); [42001-224]
+2023-10-05 15:57:06.117539-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PASTAS" already exists; SQL statement:
+CREATE TABLE pastas (pst_id integer primary key not null,pst_nome varchar2(25),pst_pst_id integer not null) [42101-224]
+2023-10-05 15:57:42.654855-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ARQUIVOS" not found; SQL statement:
+ALTER TABLE arquivos ADD CONSTRAINT fk_arq_pst FOREIGN KEY ( pst_pst_id ) REFERENCES pastas ( pst_id ) [42102-224]
+2023-10-05 15:57:57.374568-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "FK_PST_PST" already exists; SQL statement:
+ALTER TABLE pastas ADD CONSTRAINT fk_pst_pst FOREIGN KEY ( pst_pst_id ) REFERENCES pastas ( pst_id ) [90045-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:111)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:74)
+	at org.h2.command.ddl.AlterTable.update(AlterTable.java:46)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at Banco.CreateDB.main(CreateDB.java:19)
+2023-10-05 15:58:08.840459-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "PST_PST_ID" not found; SQL statement:
+ALTER TABLE arquivos ADD CONSTRAINT fk_arq_pst FOREIGN KEY ( pst_pst_id ) REFERENCES pastas ( pst_id ) [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:759)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:184)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:215)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:74)
+	at org.h2.command.ddl.AlterTable.update(AlterTable.java:46)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at Banco.CreateDB.main(CreateDB.java:28)
+2023-10-05 16:12:44.119231-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE OR REPLACE [*]NONEDITIONABLE TRIGGER ""APP"".""TG_SEQ_PST"" BEFORE INSERT ON PASTAS FOR EACH ROW\000d\000aBEGIN\000d\000a    :NEW.pst_id := SEQ_PST.nextval;\000d\000aEND;\000d\000a/"; expected "FORCE, VIEW, MATERIALIZED, ALIAS, SEQUENCE, USER, TRIGGER, ROLE, SCHEMA, CONSTANT, DOMAIN, TYPE, AGGREGATE, LINKED, MEMORY, CACHED, LOCAL TEMPORARY, GLOBAL TEMPORARY, TEMPORARY, TABLE, SYNONYM, UNIQUE, SPATIAL, INDEX"; SQL statement:
+CREATE OR REPLACE NONEDITIONABLE TRIGGER "APP"."TG_SEQ_PST" BEFORE INSERT ON PASTAS FOR EACH ROW
+BEGIN
+    :NEW.pst_id := SEQ_PST.nextval;
+END;
+/ [42001-224]
+2023-10-05 16:14:04.820776-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Sequence "SEQ_PST" already exists; SQL statement:
+CREATE SEQUENCE "SEQ_PST" [90035-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateSequence.update(CreateSequence.java:53)
+	at org.h2.command.ddl.SchemaOwnerCommand.update(SchemaOwnerCommand.java:33)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at Banco.CreateDB.main(CreateDB.java:32)
+2023-10-05 16:14:19.916825-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE OR REPLACE [*]NONEDITIONABLE TRIGGER ""APP"".""TG_SEQ_PST"" BEFORE INSERT ON PASTAS FOR EACH ROW BEGIN     :NEW.pst_id := SEQ_PST.nextval; END; /"; expected "FORCE, VIEW, MATERIALIZED, ALIAS, SEQUENCE, USER, TRIGGER, ROLE, SCHEMA, CONSTANT, DOMAIN, TYPE, AGGREGATE, LINKED, MEMORY, CACHED, LOCAL TEMPORARY, GLOBAL TEMPORARY, TEMPORARY, TABLE, SYNONYM, UNIQUE, SPATIAL, INDEX"; SQL statement:
+CREATE OR REPLACE NONEDITIONABLE TRIGGER "APP"."TG_SEQ_PST" BEFORE INSERT ON PASTAS FOR EACH ROW BEGIN     :NEW.pst_id := SEQ_PST.nextval; END; / [42001-224]
+2023-10-05 16:15:18.704413-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "APP" not found; SQL statement:
+CREATE OR REPLACE TRIGGER "APP"."TG_SEQ_PST" BEFORE INSERT ON PASTAS FOR EACH ROW 
+BEGIN 
+    :NEW.pst_id := SEQ_PST.nextval; 
+END; 
+/ [90079-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.Parser.getSchema(Parser.java:944)
+	at org.h2.command.Parser.getSchema(Parser.java:950)
+	at org.h2.command.Parser.parseCreateTrigger(Parser.java:6787)
+	at org.h2.command.Parser.parseCreate(Parser.java:6361)
+	at org.h2.command.Parser.parsePrepared(Parser.java:666)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at Banco.CreateDB.main(CreateDB.java:33)
+2023-10-05 16:15:33.103470-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE OR REPLACE TRIGGER ""TG_SEQ_PST"" BEFORE INSERT ON PASTAS FOR EACH ROW \000a[*]BEGIN \000a    :NEW.pst_id := SEQ_PST.nextval; \000aEND; \000a/"; expected "QUEUE, NOWAIT, AS, CALL"; SQL statement:
+CREATE OR REPLACE TRIGGER "TG_SEQ_PST" BEFORE INSERT ON PASTAS FOR EACH ROW 
+BEGIN 
+    :NEW.pst_id := SEQ_PST.nextval; 
+END; 
+/ [42001-224]
+2023-10-05 16:16:03.592373-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE OR REPLACE TRIGGER ""TG_SEQ_PST"" BEFORE INSERT ON PASTAS FOR EACH ROW [*]BEGIN     :NEW.pst_id := SEQ_PST.nextval; END; /"; expected "QUEUE, NOWAIT, AS, CALL"; SQL statement:
+CREATE OR REPLACE TRIGGER "TG_SEQ_PST" BEFORE INSERT ON PASTAS FOR EACH ROW BEGIN     :NEW.pst_id := SEQ_PST.nextval; END; / [42001-224]
+2023-10-05 16:16:57.535136-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE OR REPLACE TRIGGER ""TG_SEQ_PST"" BEFORE INSERT ON PASTAS FOR EACH ROW AS [*]BEGIN     :NEW.pst_id := SEQ_PST.nextval; END; /"; expected "character string"; SQL statement:
+CREATE OR REPLACE TRIGGER "TG_SEQ_PST" BEFORE INSERT ON PASTAS FOR EACH ROW AS BEGIN     :NEW.pst_id := SEQ_PST.nextval; END; / [42001-224]

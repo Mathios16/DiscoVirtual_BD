@@ -1,0 +1,45 @@
+2023-10-06 08:45:42.713343-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PASTAS" not found; SQL statement:
+CREATE OR REPLACE TRIGGER "TG_SEQ_PST" BEFORE INSERT ON PASTAS FOR EACH ROW CALL "Banco.TriggerPastas" [42102-224]
+2023-10-06 08:47:59.017945-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PASTAS" already exists; SQL statement:
+CREATE TABLE pastas (pst_id integer primary key not null,pst_nome varchar2(25),pst_pst_id integer not null) [42101-224]
+2023-10-06 08:48:37.128469-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Trigger "TG_SEQ_PST" already exists; SQL statement:
+CREATE OR REPLACE TRIGGER "TG_SEQ_PST" BEFORE INSERT ON pastas FOR EACH ROW CALL "Banco.TriggerPastas" [90041-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateTrigger.update(CreateTrigger.java:95)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at Banco.CreateDB.main(CreateDB.java:33)
+2023-10-06 08:49:09.344860-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Trigger "TG_SEQ_PST" already exists; SQL statement:
+CREATE OR REPLACE TRIGGER "TG_SEQ_PST" BEFORE INSERT ON pastas FOR EACH ROW CALL "Banco.TriggerPastas" [90041-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateTrigger.update(CreateTrigger.java:95)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at Banco.CreateDB.main(CreateDB.java:33)
+2023-10-06 08:49:21.799095-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Trigger "TG_SEQ_ARQ" already exists; SQL statement:
+CREATE OR REPLACE TRIGGER "TG_SEQ_ARQ" BEFORE INSERT ON arquivos FOR EACH ROW CALL "Banco.TriggerArquivos" [90041-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateTrigger.update(CreateTrigger.java:95)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at Banco.CreateDB.main(CreateDB.java:36)
