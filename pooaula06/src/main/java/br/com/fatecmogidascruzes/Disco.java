@@ -83,7 +83,7 @@ public class Disco {
 		PreparedStatement sql;
 		if( nome.trim().equals(null) || tipo.equals(null) || tamanho < 0 || nomeCriador.trim().equals(null))
 			throw new IllegalArgumentException("Dados não podem ser nulos");
-		if( )
+		if(  )
 
 			sql = conexao.prepareStatement("INSERT INTO ARQUIVOS VALUES (?,?,?,?,?)");
 			sql.setInt(0, 0);
