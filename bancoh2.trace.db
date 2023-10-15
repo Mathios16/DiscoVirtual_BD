@@ -43,3 +43,138 @@ CREATE OR REPLACE TRIGGER "TG_SEQ_ARQ" BEFORE INSERT ON arquivos FOR EACH ROW CA
 	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
 	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
 	at Banco.CreateDB.main(CreateDB.java:36)
+2023-10-15 11:52:31.193940-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT pst_nome,SELECT( pst_nome [*]FROM pastas p2 WHERE p1.pst_pst_id = p2.pst_id )FROM pastas p1 WHERE pst_nome = ?"; expected "(, ., [, ., ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"; SQL statement:
+SELECT pst_nome,SELECT( pst_nome FROM pastas p2 WHERE p1.pst_pst_id = p2.pst_id )FROM pastas p1 WHERE pst_nome = ? [42001-224]
+2023-10-15 11:55:50.630389-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT pst_nome,SELECT( pst_nome [*]FROM pastas p2 WHERE p1.pst_pst_id = p2.pst_id )FROM pastas p1 WHERE pst_nome = ?"; expected "(, ., [, ., ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"; SQL statement:
+SELECT pst_nome,SELECT( pst_nome FROM pastas p2 WHERE p1.pst_pst_id = p2.pst_id )FROM pastas p1 WHERE pst_nome = ? [42001-224]
+2023-10-15 12:04:58.893731-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column count does not match; SQL statement:
+INSERT INTO ARQUIVOS VALUES (?,?,?) [21002-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at br.com.fatecmogidascruzes.Disco.addPasta(Disco.java:156)
+	at br.com.fatecmogidascruzes.Disco.<init>(Disco.java:15)
+	at br.com.fatecmogidascruzes.Principal.main(Principal.java:20)
+2023-10-15 12:05:49.832493-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column count does not match; SQL statement:
+INSERT INTO ARQUIVOS VALUES (?,?,?) [21002-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at br.com.fatecmogidascruzes.Disco.addPasta(Disco.java:156)
+	at br.com.fatecmogidascruzes.Disco.<init>(Disco.java:15)
+	at br.com.fatecmogidascruzes.Principal.main(Principal.java:20)
+2023-10-15 12:09:16.849023-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column count does not match; SQL statement:
+INSERT INTO ARQUIVOS VALUES (?,?,?) [21002-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at br.com.fatecmogidascruzes.Disco.addPasta(Disco.java:156)
+	at br.com.fatecmogidascruzes.Disco.<init>(Disco.java:15)
+	at br.com.fatecmogidascruzes.Principal.main(Principal.java:20)
+2023-10-15 12:10:47.048450-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column count does not match; SQL statement:
+INSERT INTO ARQUIVOS VALUES (?,?,?) [21002-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at br.com.fatecmogidascruzes.Disco.addPasta(Disco.java:155)
+	at br.com.fatecmogidascruzes.Disco.<init>(Disco.java:14)
+	at br.com.fatecmogidascruzes.Principal.main(Principal.java:20)
+2023-10-15 12:11:25.183946-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Invalid value "0" for parameter "parameterIndex" [90008-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:298)
+	at org.h2.jdbc.JdbcPreparedStatement.setParameter(JdbcPreparedStatement.java:1408)
+	at org.h2.jdbc.JdbcPreparedStatement.setInt(JdbcPreparedStatement.java:372)
+	at br.com.fatecmogidascruzes.Disco.addPasta(Disco.java:156)
+	at br.com.fatecmogidascruzes.Disco.<init>(Disco.java:14)
+	at br.com.fatecmogidascruzes.Principal.main(Principal.java:20)
+2023-10-15 12:11:41.338366-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]:NEW.pst_id := SEQ_PST.nextval;"; SQL statement:
+:NEW.pst_id := SEQ_PST.nextval; [42000-224]
+2023-10-15 12:11:41.347374-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]:NEW.pst_id := SEQ_PST.nextval;"; SQL statement:
+:NEW.pst_id := SEQ_PST.nextval; [42000-224]
+2023-10-15 12:17:13.444813-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]BEGINpst_id := SEQ_PST.nextvalEND"; expected "BACKUP, BEGIN"; SQL statement:
+BEGINpst_id := SEQ_PST.nextvalEND [42001-224]
+2023-10-15 12:17:13.453821-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]BEGINpst_id := SEQ_PST.nextvalEND"; expected "BACKUP, BEGIN"; SQL statement:
+BEGINpst_id := SEQ_PST.nextvalEND [42001-224]
+2023-10-15 12:17:35.798747-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]BEGINpst_id := SEQ_PST.nextval END"; expected "BACKUP, BEGIN"; SQL statement:
+BEGINpst_id := SEQ_PST.nextval END [42001-224]
+2023-10-15 12:17:35.808755-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]BEGINpst_id := SEQ_PST.nextval END"; expected "BACKUP, BEGIN"; SQL statement:
+BEGINpst_id := SEQ_PST.nextval END [42001-224]
+2023-10-15 12:17:51.904041-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "BEGIN [*]pst_id := SEQ_PST.nextval END"; SQL statement:
+BEGIN pst_id := SEQ_PST.nextval END [42000-224]
+2023-10-15 12:17:51.914050-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "BEGIN [*]pst_id := SEQ_PST.nextval END"; SQL statement:
+BEGIN pst_id := SEQ_PST.nextval END [42000-224]
+2023-10-15 12:18:48.318073-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "BEGIN [*]:NEW.pst_id := SEQ_PST.nextval END"; SQL statement:
+BEGIN :NEW.pst_id := SEQ_PST.nextval END [42000-224]
+2023-10-15 12:18:48.327081-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "BEGIN [*]:NEW.pst_id := SEQ_PST.nextval END"; SQL statement:
+BEGIN :NEW.pst_id := SEQ_PST.nextval END [42000-224]
+2023-10-15 12:19:32.751942-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "BEGIN [*]? := SEQ_PST.nextval END"; SQL statement:
+BEGIN ? := SEQ_PST.nextval END [42000-224]
+2023-10-15 12:19:32.761951-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "BEGIN [*]? := SEQ_PST.nextval END"; SQL statement:
+BEGIN ? := SEQ_PST.nextval END [42000-224]
+2023-10-15 12:19:58.982649-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "BEGIN [*]? := SEQ_PST.nextval; END"; SQL statement:
+BEGIN ? := SEQ_PST.nextval; END [42000-224]
+2023-10-15 12:19:58.992658-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "BEGIN [*]? := SEQ_PST.nextval; END"; SQL statement:
+BEGIN ? := SEQ_PST.nextval; END [42000-224]

@@ -10,8 +10,6 @@ public class Arquivo extends Item {
         this.tipo = tipo;
         this.tamanho = tamanho;
         setCriador(criador);
-        if( getCriador() != null )
-            criador.addArquivo(nome);
 
     }
 

@@ -14,10 +14,12 @@ public class TriggerPastas implements Trigger {
 
     @Override
     public void fire(Connection conn, Object[] oldRow, Object[] newRow) throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement(":NEW.pst_id := SEQ_PST.nextval;")
-        ) {
-            stmt.executeUpdate();
-        }
+        PreparedStatement sql;
+        sql = conn.prepareStatement("BEGIN " 
+                                        +"? := SEQ_PST.nextval;"
+                                    +" END");
+        sql.setString(0, newRow[0].toString());
+        sql.executeUpdate();
     }
 
     @Override

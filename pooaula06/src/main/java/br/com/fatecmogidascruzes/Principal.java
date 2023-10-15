@@ -14,14 +14,15 @@ public class Principal {
         String nome,criador, tipo;
 		boolean continua=true;
 		Connection conexao;
+		Disco areaDeTrabalho;
 		try{
 			conexao = DriverManager.getConnection("jdbc:h2:./bancoh2");	
-		}catch(SQLException ex){
-			System.out.println(ex.getSQLState());
+			areaDeTrabalho = new Disco(conexao);
+		}catch(Exception ex){
+			System.out.println(ex.getMessage());
 			entrada.close();
 			return;
 		}
-		Disco areaDeTrabalho = new Disco();
         
         do {
         	

@@ -10,8 +10,8 @@ public class Disco {
 
 	private Pasta raiz;
 	
-	public Disco() {
-		raiz = new Pasta("raiz");
+	public Disco(Connection conexao) throws IllegalArgumentException, SQLException {
+		addPasta("raiz", "raiz", conexao);
 	}
 	
 	public Item procurar(String nome, Tipo tp, Connection conexao) throws SQLException {
@@ -30,9 +30,9 @@ public class Disco {
 				resultado.next();
 				if( resultado.wasNull() ){
 					if(resultado.getString(1).equals(nome))
-						return new Pasta(resultado.getString(0), null);
+						return new Pasta(resultado.getString(1), null);
 					else
-						return new Pasta(resultado.getString(0), 
+						return new Pasta(resultado.getString(1), 
 										(Pasta)procurar(resultado.getString(1),Tipo.PASTAS, conexao));
 				}
 				break;
@@ -41,14 +41,14 @@ public class Disco {
 												+"SELECT( pst_nome FROM pastas p WHERE a.arq_pst_id = p.pst_id )"
 												+"FROM arquivos a"
 												+"WHERE arq_nome = ?");
-				sql.setString(0, nome);
+				sql.setString(1, nome);
 				resultado = sql.executeQuery();
 				resultado.next();
 				if(resultado.wasNull())
-					return new Arquivo(resultado.getString(0),
-									resultado.getString(1),
-									resultado.getInt(2), 
-									(Pasta)procurar(resultado.getString(3),Tipo.PASTAS, conexao));
+					return new Arquivo(resultado.getString(1),
+									resultado.getString(2),
+									resultado.getInt(3), 
+									(Pasta)procurar(resultado.getString(4),Tipo.PASTAS, conexao));
 				break;
 		}	
 		return null;
@@ -64,21 +64,21 @@ public class Disco {
 				sql = conexao.prepareStatement("SELECT pst_id"
 												+"FROM pastas"
 												+"WHERE pst_nome = ?");
-				sql.setString(0, nome);
+				sql.setString(1, nome);
 				resultado = sql.executeQuery();
 				while(resultado.next())
 					if(resultado != null){
-						return resultado.getInt(0);
+						return resultado.getInt(1);
 					}
 				break;
 			case AQRUIVOS:
 				sql = conexao.prepareStatement("SELECT arq_id"
 												+"FROM arquivos"
 												+"WHERE arq_nome = ?");
-				sql.setString(0, nome);
+				sql.setString(1, nome);
 				resultado = sql.executeQuery();
 					if(resultado != null){
-						return resultado.getInt(0);
+						return resultado.getInt(1);
 					}
 				break;
 		}
@@ -114,11 +114,11 @@ public class Disco {
 
 		if( procurar(nome, Tipo.AQRUIVOS, conexao).equals(null) ){
 			sql = conexao.prepareStatement("INSERT INTO ARQUIVOS VALUES (?,?,?,?,?)");
-			sql.setInt(0, 0);
-			sql.setString(1, nome);
-			sql.setString(2, tipo);
-			sql.setInt(3, tamanho);
-			sql.setInt(4, procurarId(nomeCriador, Tipo.PASTAS, conexao));
+			sql.setInt(0, 1);
+			sql.setString(2, nome);
+			sql.setString(3, tipo);
+			sql.setInt(4, tamanho);
+			sql.setInt(5, procurarId(nomeCriador, Tipo.PASTAS, conexao));
 			sql.executeUpdate();
 		}
 	}
@@ -136,11 +136,11 @@ public class Disco {
 															+"arq_tamanho = ?"
 															+"arq_pst_id = ?"
 										  +"WHERE arq_id = ?");
-			sql.setString(0, nome);
-			sql.setString(1, tipo);
-			sql.setInt(2, tamanho);
-			sql.setInt(3, procurarId(nomeCriador, Tipo.PASTAS, conexao));
-			sql.setInt(4, procurarId(nomeAntigo, Tipo.AQRUIVOS, conexao));
+			sql.setString(1, nome);
+			sql.setString(2, tipo);
+			sql.setInt(3, tamanho);
+			sql.setInt(4, procurarId(nomeCriador, Tipo.PASTAS, conexao));
+			sql.setInt(5, procurarId(nomeAntigo, Tipo.AQRUIVOS, conexao));
 			sql.executeUpdate();
 		}
 	}
@@ -151,11 +151,19 @@ public class Disco {
 		if( nome.trim().equals(null) || nomeCriador.trim().equals(null))
 			throw new IllegalArgumentException("Dados não podem ser nulos");
 
+		if( nome.equals("raiz") ){
+			sql = conexao.prepareStatement("INSERT INTO PASTAS VALUES (?,?,?)");
+			sql.setInt(1, 0);
+			sql.setString(2, nome);
+			sql.setInt(3, 0);
+			sql.executeUpdate();
+		}
+
 		if( procurar(nome, Tipo.PASTAS, conexao).equals(null) ){
-			sql = conexao.prepareStatement("INSERT INTO ARQUIVOS VALUES (?,?,?)");
-			sql.setInt(0, 0);
-			sql.setString(1, nome);
-			sql.setInt(2, procurarId(nomeCriador, Tipo.PASTAS, conexao));
+			sql = conexao.prepareStatement("INSERT INTO PASTAS VALUES (?,?,?)");
+			sql.setInt(0, 1);
+			sql.setString(2, nome);
+			sql.setInt(3, procurarId(nomeCriador, Tipo.PASTAS, conexao));
 			sql.executeUpdate();
 		}
 
@@ -172,9 +180,9 @@ public class Disco {
 															+"pst_nome = ?"
 															+"pst_pst_id = ?"
 										  +"WHERE pst_id = ?");
-			sql.setString(0, nome);
-			sql.setInt(1, procurarId(nomeCriador, Tipo.PASTAS, conexao));
-			sql.setInt(2, procurarId(nomeAntigo, Tipo.PASTAS, conexao));
+			sql.setString(1, nome);
+			sql.setInt(2, procurarId(nomeCriador, Tipo.PASTAS, conexao));
+			sql.setInt(3, procurarId(nomeAntigo, Tipo.PASTAS, conexao));
 			sql.executeUpdate();
 		}
 
@@ -188,17 +196,17 @@ public class Disco {
 			throw new IllegalArgumentException("Dados não podem ser nulos");
 		
 		sql = conexao.prepareStatement("SELECT arq_nome FROM ARQUIVOS WHERE arq_pst_id = ?");
-		sql.setInt(0, procurarId(nomeCriador, tipo, conexao));
+		sql.setInt(1, procurarId(nomeCriador, tipo, conexao));
 		resultado = sql.executeQuery();
 		while(resultado.next()){
-			del(resultado.getString(0), tipo, conexao);
+			del(resultado.getString(1), tipo, conexao);
 		}
 
 		sql = conexao.prepareStatement("SELECT pst_nome FROM PASTAS WHERE pst_pst_id = ?");
-		sql.setInt(0, procurarId(nomeCriador, tipo, conexao));
+		sql.setInt(1, procurarId(nomeCriador, tipo, conexao));
 		resultado = sql.executeQuery();
 		while(resultado.next()){
-			delete(resultado.getString(0), tipo, nome, conexao);
+			delete(resultado.getString(1), tipo, nome, conexao);
 		}
 
 		del(nome, tipo, conexao);
@@ -209,12 +217,12 @@ public class Disco {
 		
 		PreparedStatement sql;
 		sql = conexao.prepareStatement("DELETE FROM ? WHERE ? = ?");
-		sql.setString(0, tipo.toString());
+		sql.setString(1, tipo.toString());
 		if(tipo == Tipo.AQRUIVOS)
-			sql.setString(1,"arq_id");
+			sql.setString(2,"arq_id");
 		else
-			sql.setString(1,"pst_id");
-		sql.setInt(2, procurarId(nome, Tipo.PASTAS, conexao));
+			sql.setString(2,"pst_id");
+		sql.setInt(3, procurarId(nome, Tipo.PASTAS, conexao));
 		sql.executeUpdate();
 
 	}
