@@ -23,9 +23,9 @@ public class Disco {
 			case PASTAS:
 				sql = conexao.prepareStatement("SELECT pst_nome," 
 												+"SELECT( pst_nome FROM pastas p2 WHERE p1.pst_pst_id = p2.pst_id )"
-												+"FROM pastas p1"
+												+"FROM pastas p1 "
 												+"WHERE pst_nome = ?");
-				sql.setString(0, nome);
+				sql.setString(1, nome);
 				resultado = sql.executeQuery();
 				resultado.next();
 				if( resultado.wasNull() ){

@@ -22,13 +22,13 @@ public class Pasta extends Item {
     
     public void addArquivo(String nome){
 
-        subItens.put(Tipo.AQRUIVO,nome);
+        subItens.put(Tipo.AQRUIVOS,nome);
 
     }
 
     public void addSubPasta(String nome){
 
-        subItens.put(Tipo.PASTA,nome);
+        subItens.put(Tipo.PASTAS,nome);
 
     }
 

@@ -1,4 +1,7 @@
 package br.com.fatecmogidascruzes;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Principal {
@@ -10,7 +13,14 @@ public class Principal {
         int opcao, tamanho;
         String nome,criador, tipo;
 		boolean continua=true;
-
+		Connection conexao;
+		try{
+			conexao = DriverManager.getConnection("jdbc:h2:./bancoh2");	
+		}catch(SQLException ex){
+			System.out.println(ex.getSQLState());
+			entrada.close();
+			return;
+		}
 		Disco areaDeTrabalho = new Disco();
         
         do {
@@ -32,9 +42,9 @@ public class Principal {
 	        	criador = entrada.next();
 	        	
 				try{
-					areaDeTrabalho.addPasta(nome, criador);
+					areaDeTrabalho.addPasta(nome, criador,conexao);
 					System.out.println("Pasta "+nome+" adicionada com sucesso!");
-				}catch(IllegalArgumentException ex){
+				}catch(Exception ex){
 					System.out.println(ex.getMessage());
 				}
 
@@ -52,21 +62,22 @@ public class Principal {
 				System.out.println();
 
 				try{
-					areaDeTrabalho.addArquivo(nome.toLowerCase(), tipo, tamanho, criador);
+					areaDeTrabalho.addArquivo(nome.toLowerCase(), tipo, tamanho, criador,conexao);
 					System.out.println("Arquivo "+nome+" adicionado com sucesso!");
-				}catch(IllegalArgumentException ex){
+				}catch(Exception ex){
 					System.out.println(ex.getMessage());
 				}
 	        	
 	        	break;
+				/*
 	        case 3:
         		System.out.println("Deseja procurar qual Pasta (area de trabalho - raiz): ");
         		nome = entrada.next();
 
 				try{
-        			Pasta p = (Pasta)areaDeTrabalho.procurar(nome.toLowerCase(), Tipo.PASTA);
+        			Pasta p = (Pasta)areaDeTrabalho.procurar(nome.toLowerCase(), Tipo.PASTAS,conexao);
 
-					System.out.println(areaDeTrabalho.caminho(nome)+" - "+p.tamanho()+"\n");
+					System.out.println(areaDeTrabalho.caminho(nome,conexao));
 					for(Pasta subP:p.getSubPastas()){
 						System.out.println("P - "+subP.getNome()+"\t\t- "+subP.tamanho());
 					}
@@ -92,6 +103,7 @@ public class Principal {
 				}
 
 	        	break;
+				*/
 	        case 5:
 	        	System.out.println("Insira o nome da pasta: ");
 	        	nome = entrada.next();
@@ -99,9 +111,9 @@ public class Principal {
 	        	criador = entrada.next();
 	        	
 				try{
-					areaDeTrabalho.apagar(nome.toLowerCase(), Tipo.PASTA, criador);
+					areaDeTrabalho.delete(nome.toLowerCase(), Tipo.PASTAS, criador, conexao);
 					System.out.println("Pasta "+nome+" excluida com sucesso!");
-				}catch(IllegalArgumentException ex){
+				}catch(Exception ex){
 					System.out.println(ex.getMessage());
 				}
 
@@ -113,9 +125,9 @@ public class Principal {
 	        	criador = entrada.next();
 	        	
 				try{
-					areaDeTrabalho.apagar(nome.toLowerCase(), Tipo.AQRUIVO, criador);
+					areaDeTrabalho.delete(nome.toLowerCase(), Tipo.AQRUIVOS, criador,conexao);
 					System.out.println("Arquivo "+nome+" excluido com sucesso!");
-				}catch(IllegalArgumentException ex){
+				}catch(Exception ex){
 					System.out.println(ex.getMessage());
 				}
 	        	
