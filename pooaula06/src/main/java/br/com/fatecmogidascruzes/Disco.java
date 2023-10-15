@@ -27,10 +27,14 @@ public class Disco {
 												+"WHERE pst_nome = ?");
 				sql.setString(0, nome);
 				resultado = sql.executeQuery();
-				while(resultado.next())
-					if(resultado != null)
+				resultado.next();
+				if( resultado.wasNull() ){
+					if(resultado.getString(1).equals(nome))
+						return new Pasta(resultado.getString(0), null);
+					else
 						return new Pasta(resultado.getString(0), 
 										(Pasta)procurar(resultado.getString(1),Tipo.PASTA, conexao));
+				}
 				break;
 			case AQRUIVO:
 				sql = conexao.prepareStatement("SELECT arq_nome, arq_tipo, arq_tamanho"
@@ -39,11 +43,12 @@ public class Disco {
 												+"WHERE arq_nome = ?");
 				sql.setString(0, nome);
 				resultado = sql.executeQuery();
-					if(resultado != null)
-						return new Arquivo(resultado.getString(0),
-										resultado.getString(1),
-										resultado.getInt(2), 
-										(Pasta)procurar(resultado.getString(3),Tipo.PASTA, conexao));
+				resultado.next();
+				if(resultado.wasNull())
+					return new Arquivo(resultado.getString(0),
+									resultado.getString(1),
+									resultado.getInt(2), 
+									(Pasta)procurar(resultado.getString(3),Tipo.PASTA, conexao));
 				break;
 		}	
 		return null;
@@ -114,34 +119,37 @@ public class Disco {
 			sql.setString(2, tipo);
 			sql.setInt(3, tamanho);
 			sql.setInt(4, procurarId(nomeCriador, Tipo.PASTA, conexao));
+			sql.executeUpdate();
 		}
 	}
 	
 	public void addPasta(String nome, String nomeCriador,  Connection conexao) throws IllegalArgumentException, SQLException {
 
-		if( nome.trim().equals(null) )
-			throw new IllegalArgumentException("Nome não pode ser nulo");
+		PreparedStatement sql;
+		if( nome.trim().equals(null) || nomeCriador.trim().equals(null))
+			throw new IllegalArgumentException("Dados não podem ser nulos");
 
-		if( nomeCriador.toLowerCase().equals("raiz") )
-			new Pasta(nome, raiz);
-		else {
-			Pasta criador = (Pasta)procurar(nomeCriador, Tipo.PASTA, conexao);
-			new Pasta(nome, criador);
+		if( procurar(nome, Tipo.PASTA, conexao).equals(null) ){
+			sql = conexao.prepareStatement("INSERT INTO ARQUIVOS VALUES (?,?,?)");
+			sql.setInt(0, 0);
+			sql.setString(1, nome);
+			sql.setInt(2, procurarId(nomeCriador, Tipo.PASTA, conexao));
+			sql.executeUpdate();
 		}
 
 	}
 	
-	
-	public void apagar(String nome, Tipo tipo, String nomeCriador, Connection conexao) throws IllegalArgumentException, SQLException {
+	public void delete(String nome, Tipo tipo, String nomeCriador, Connection conexao) throws IllegalArgumentException, SQLException {
 
+		PreparedStatement sql;
 		if( nome.trim().equals(null) || tipo.equals(null) )
 			throw new IllegalArgumentException("Dados não podem ser nulos");
 
-		if( nomeCriador.toLowerCase().equals("raiz") )
-			procurar(nome, tipo, conexao);
-		else {
-			Pasta criador = (Pasta)procurar(nomeCriador, Tipo.PASTA, conexao);
-			criador.excluir();
+		if( !procurar(nome, tipo, conexao).equals(null) ){
+			sql = conexao.prepareStatement("DELETE FROM ? WHERE arq_id = ?");
+			sql.setString(0, tipo.toString());
+			sql.setInt(1, procurarId(nome, Tipo.PASTA, conexao));
+			sql.executeUpdate();
 		}
 		
 	}
