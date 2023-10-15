@@ -122,6 +122,28 @@ public class Disco {
 			sql.executeUpdate();
 		}
 	}
+
+	public void updateArquivo(String nomeAntigo, String nome, String tipo, int tamanho, String nomeCriador, Connection conexao) throws IllegalArgumentException, SQLException {
+
+		PreparedStatement sql;
+		if( nomeAntigo.trim().equals(null) || nome.trim().equals(null) || tipo.equals(null) || tamanho < 0 || nomeCriador.trim().equals(null))
+			throw new IllegalArgumentException("Dados não podem ser nulos");
+
+		if( !procurar(nomeAntigo, Tipo.AQRUIVO, conexao).equals(null) ){
+			sql = conexao.prepareStatement("UPDATE ARQUIVOS SET"
+															+"arq_nome = ?"
+															+"arq_tipo = ?"
+															+"arq_tamanho = ?"
+															+"arq_pst_id = ?"
+										  +"WHERE arq_id = ?");
+			sql.setString(0, nome);
+			sql.setString(1, tipo);
+			sql.setInt(2, tamanho);
+			sql.setInt(3, procurarId(nomeCriador, Tipo.PASTA, conexao));
+			sql.setInt(4, procurarId(nomeAntigo, Tipo.AQRUIVO, conexao));
+			sql.executeUpdate();
+		}
+	}
 	
 	public void addPasta(String nome, String nomeCriador,  Connection conexao) throws IllegalArgumentException, SQLException {
 
@@ -134,6 +156,25 @@ public class Disco {
 			sql.setInt(0, 0);
 			sql.setString(1, nome);
 			sql.setInt(2, procurarId(nomeCriador, Tipo.PASTA, conexao));
+			sql.executeUpdate();
+		}
+
+	}
+
+	public void updatePasta(String nomeAntigo, String nome, String nomeCriador,  Connection conexao) throws IllegalArgumentException, SQLException {
+
+		PreparedStatement sql;
+		if( nome.trim().equals(null) || nomeCriador.trim().equals(null))
+			throw new IllegalArgumentException("Dados não podem ser nulos");
+
+		if( !procurar(nomeAntigo, Tipo.PASTA, conexao).equals(null) ){
+			sql = conexao.prepareStatement("UPDATE PASTAS SET"
+															+"pst_nome = ?"
+															+"pst_pst_id = ?"
+										  +"WHERE pst_id = ?");
+			sql.setString(0, nome);
+			sql.setInt(1, procurarId(nomeCriador, Tipo.PASTA, conexao));
+			sql.setInt(2, procurarId(nomeAntigo, Tipo.PASTA, conexao));
 			sql.executeUpdate();
 		}
 
