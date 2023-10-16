@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Stack;
 
+import Banco.DB;
+
 public class Disco {
 
 	private Pasta raiz;
@@ -114,7 +116,7 @@ public class Disco {
 
 		if( procurar(nome, Tipo.AQRUIVOS, conexao).equals(null) ){
 			sql = conexao.prepareStatement("INSERT INTO ARQUIVOS VALUES (?,?,?,?,?)");
-			sql.setInt(0, 1);
+			sql.setLong(1, DB.getSeqArquivo(conexao));
 			sql.setString(2, nome);
 			sql.setString(3, tipo);
 			sql.setInt(4, tamanho);
@@ -153,7 +155,7 @@ public class Disco {
 
 		if( nome.equals("raiz") ){
 			sql = conexao.prepareStatement("INSERT INTO PASTAS VALUES (?,?,?)");
-			sql.setInt(1, 0);
+			sql.setLong(1, 0);
 			sql.setString(2, nome);
 			sql.setInt(3, 0);
 			sql.executeUpdate();
@@ -161,7 +163,7 @@ public class Disco {
 
 		if( procurar(nome, Tipo.PASTAS, conexao).equals(null) ){
 			sql = conexao.prepareStatement("INSERT INTO PASTAS VALUES (?,?,?)");
-			sql.setInt(0, 1);
+			sql.setLong(1, DB.getSeqPasta(conexao));
 			sql.setString(2, nome);
 			sql.setInt(3, procurarId(nomeCriador, Tipo.PASTAS, conexao));
 			sql.executeUpdate();

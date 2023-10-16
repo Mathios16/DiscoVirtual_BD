@@ -178,3 +178,137 @@ BEGIN ? := SEQ_PST.nextval; END [42000-224]
 2023-10-15 12:19:58.992658-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "BEGIN [*]? := SEQ_PST.nextval; END"; SQL statement:
 BEGIN ? := SEQ_PST.nextval; END [42000-224]
+2023-10-16 09:24:56.161948-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "SEQ_PST.NEXTVAL" not found; SQL statement:
+SELECT SEQ_PST.nextval FROM dual [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1170)
+	at org.h2.command.query.Query.prepare(Query.java:218)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at Banco.DB.getSeqPasta(DB.java:49)
+	at br.com.fatecmogidascruzes.Disco.addPasta(Disco.java:158)
+	at br.com.fatecmogidascruzes.Disco.<init>(Disco.java:16)
+	at br.com.fatecmogidascruzes.Principal.main(Principal.java:19)
+2023-10-16 09:26:16.031679-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Trigger "TG_SEQ_PST" already exists; SQL statement:
+CREATE OR REPLACE TRIGGER "TG_SEQ_PST" BEFORE INSERT ON pastas FOR EACH ROW CALL "Banco.TriggerPastas" [90041-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateTrigger.update(CreateTrigger.java:95)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at Banco.DB.main(DB.java:36)
+2023-10-16 09:26:31.538489-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Sequence "SEQ_PST" already exists; SQL statement:
+CREATE SEQUENCE "SEQ_PST" [90035-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateSequence.update(CreateSequence.java:53)
+	at org.h2.command.ddl.SchemaOwnerCommand.update(SchemaOwnerCommand.java:33)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at Banco.DB.main(DB.java:35)
+2023-10-16 09:28:12.037016-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Sequence "SEQ_PST" already exists; SQL statement:
+CREATE SEQUENCE SEQ_PST [90035-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.CreateSequence.update(CreateSequence.java:53)
+	at org.h2.command.ddl.SchemaOwnerCommand.update(SchemaOwnerCommand.java:33)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at Banco.DB.main(DB.java:35)
+2023-10-16 09:28:33.759036-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "SEQ_PST.NEXTVAL" not found; SQL statement:
+SELECT SEQ_PST.nextval [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1170)
+	at org.h2.command.query.Query.prepare(Query.java:218)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at Banco.DB.getSeqPasta(DB.java:50)
+	at br.com.fatecmogidascruzes.Disco.addPasta(Disco.java:158)
+	at br.com.fatecmogidascruzes.Disco.<init>(Disco.java:16)
+	at br.com.fatecmogidascruzes.Principal.main(Principal.java:19)
+2023-10-16 09:29:17.498507-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "SEQ_PST.NEXTVAL" not found; SQL statement:
+SELECT SEQ_PST.nextval [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1170)
+	at org.h2.command.query.Query.prepare(Query.java:218)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at Banco.DB.getSeqPasta(DB.java:50)
+	at br.com.fatecmogidascruzes.Disco.addPasta(Disco.java:158)
+	at br.com.fatecmogidascruzes.Disco.<init>(Disco.java:16)
+	at br.com.fatecmogidascruzes.Principal.main(Principal.java:19)
+2023-10-16 09:30:33.961696-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]SEQ_PST.nextval"; expected "SAVEPOINT, SCRIPT, SHUTDOWN"; SQL statement:
+SEQ_PST.nextval [42001-224]
+2023-10-16 09:31:05.196703-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "BEGIN [*]? := SEQ_PST.nextval; END"; SQL statement:
+BEGIN ? := SEQ_PST.nextval; END [42000-224]
+2023-10-16 09:31:05.222727-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "BEGIN [*]? := SEQ_PST.nextval; END"; SQL statement:
+BEGIN ? := SEQ_PST.nextval; END [42000-224]
+2023-10-16 09:31:12.903029-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "BEGIN [*]? := SEQ_PST.nextval; END"; SQL statement:
+BEGIN ? := SEQ_PST.nextval; END [42000-224]
+2023-10-16 09:31:12.912036-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "BEGIN [*]? := SEQ_PST.nextval; END"; SQL statement:
+BEGIN ? := SEQ_PST.nextval; END [42000-224]
+2023-10-16 09:37:40.690974-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SEQUENCE" not found; SQL statement:
+UPDATE SEQUENCE SEQ_PST start with 1 increment by 1; [42102-224]
+2023-10-16 09:38:02.534764-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]REPLACE SEQUENCE SEQ_PST start with 1 increment by 1;"; expected "ROLLBACK, REVOKE, RUNSCRIPT, RELEASE, REFRESH"; SQL statement:
+REPLACE SEQUENCE SEQ_PST start with 1 increment by 1; [42001-224]
+2023-10-16 09:39:00.496396-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "REFRESH [*]SEQUENCE SEQ_PST start with 1 increment by 1;"; expected "MATERIALIZED"; SQL statement:
+REFRESH SEQUENCE SEQ_PST start with 1 increment by 1; [42001-224]
+2023-10-16 09:39:34.598391-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SEQUENCE" not found; SQL statement:
+DELETE SEQUENCE SEQ_PST; [42102-224]
